@@ -1,0 +1,23 @@
+# Ignore Python virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Ignore Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore system files
+.DS_Store
+
+# Ignore Ollama models (if not needed in repo)
+~/.ollama/
+
+# Ignore VSCode settings (optional)
+.vscode/
