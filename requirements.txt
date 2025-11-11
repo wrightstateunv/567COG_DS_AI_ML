@@ -1,0 +1,17 @@
+# ---
+# Haystack pipeline for cricket data (semantic search, vector DB, UI, OpenAI)
+haystack-ai     # Modern Haystack framework for pipelines (use this instead of farm-haystack)
+faiss-cpu       # Vector database for semantic search
+openai          # GPT-4.0 embeddings and LLM
+streamlit       # UI for conversational QA
+# ---
+streamlit
+huggingface_hub
+openai
+scikit-learn
+pandas
+numpy
+matplotlib
+seaborn
+pandas
+numpy

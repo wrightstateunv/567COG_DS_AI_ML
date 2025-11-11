@@ -1,0 +1,51 @@
+player_id,name,date_of_birth,country,city
+1,Virat Kohli,1988-11-05,India,Delhi
+2,Steve Smith,1989-06-02,Australia,Sydney
+3,Kane Williamson,1990-08-08,New Zealand,Tauranga
+4,Joe Root,1990-12-30,England,Sheffield
+5,Babar Azam,1994-10-15,Pakistan,Lahore
+6,David Warner,1986-10-27,Australia,Sydney
+7,Rohit Sharma,1987-04-30,India,Mumbai
+8,AB de Villiers,1984-02-17,South Africa,Pretoria
+9,Chris Gayle,1979-09-21,West Indies,Kingston
+10,Hashim Amla,1983-03-31,South Africa,Durban
+11,Sachin Tendulkar,1973-04-24,India,Mumbai
+12,Ricky Ponting,1974-12-19,Australia,Launceston
+13,Brian Lara,1969-05-02,West Indies,Santa Cruz
+14,Jacques Kallis,1975-10-16,South Africa,Cape Town
+15,Ben Stokes,1991-06-04,England,Christchurch
+16,Shakib Al Hasan,1987-03-24,Bangladesh,Magura
+17,Imran Khan,1952-10-05,Pakistan,Lahore
+18,Kapil Dev,1959-01-06,India,Chandigarh
+19,Wasim Akram,1966-06-03,Pakistan,Lahore
+20,Glenn McGrath,1970-02-09,Australia,Dubbo
+21,Shane Warne,1969-09-13,Australia,Upper Ferntree Gully
+22,Muttiah Muralitharan,1972-04-17,Sri Lanka,Kandy
+23,Anil Kumble,1970-10-17,India,Bangalore
+24,Curtly Ambrose,1963-09-21,West Indies,Swetes
+25,James Anderson,1982-07-30,England,Burnley
+26,Shaun Pollock,1973-07-16,South Africa,Port Elizabeth
+27,Brett Lee,1976-11-08,Australia,Wollongong
+28,Lasith Malinga,1983-08-28,Sri Lanka,Galle
+29,Shoaib Akhtar,1975-08-13,Pakistan,Rawalpindi
+30,Mitchell Starc,1990-01-30,Australia,Sydney
+31,Sunil Gavaskar,1949-07-10,India,Mumbai
+32,Matthew Hayden,1971-10-29,Australia,Kingaroy
+33,Inzamam-ul-Haq,1970-03-03,Pakistan,Multan
+34,Mahela Jayawardene,1977-05-27,Sri Lanka,Colombo
+35,Kumar Sangakkara,1977-10-27,Sri Lanka,Matale
+36,Adam Gilchrist,1971-11-14,Australia,Bellingen
+37,MS Dhoni,1981-07-07,India,Ranchi
+38,Brendon McCullum,1981-09-27,New Zealand,Dunedin
+39,Mark Boucher,1976-12-03,South Africa,East London
+40,Quinton de Kock,1992-12-17,South Africa,Johannesburg
+41,Allan Border,1955-07-27,Australia,Sydney
+42,Graeme Smith,1981-02-01,South Africa,Johannesburg
+43,Alastair Cook,1984-12-25,England,Gloucester
+44,Michael Clarke,1981-04-02,Australia,Liverpool
+45,Kevin Pietersen,1980-06-27,England,Pietermaritzburg
+46,Saqlain Mushtaq,1976-12-29,Pakistan,Lahore
+47,Harbhajan Singh,1980-07-03,India,Jalandhar
+48,Zaheer Khan,1978-10-07,India,Shirur
+49,Stuart Broad,1986-06-24,England,Nottingham
+50,Trent Boult,1989-07-22,New Zealand,Rotorua

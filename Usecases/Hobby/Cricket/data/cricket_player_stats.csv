@@ -1,0 +1,51 @@
+player_id,name,role,batting_average,bowling_average,team
+1,Virat Kohli,Batsman,57.7,,India
+2,Steve Smith,Batsman,59.8,,Australia
+3,Kane Williamson,Batsman,54.3,,New Zealand
+4,Joe Root,Batsman,50.2,,England
+5,Babar Azam,Batsman,48.6,,Pakistan
+6,David Warner,Batsman,46.2,,Australia
+7,Rohit Sharma,Batsman,45.5,,India
+8,AB de Villiers,Batsman,53.5,,South Africa
+9,Chris Gayle,Batsman,42.2,,West Indies
+10,Hashim Amla,Batsman,49.5,,South Africa
+11,Sachin Tendulkar,Batsman,53.8,,India
+12,Ricky Ponting,Batsman,51.9,,Australia
+13,Brian Lara,Batsman,52.9,,West Indies
+14,Jacques Kallis,All-rounder,55.4,32.6,South Africa
+15,Ben Stokes,All-rounder,37.0,32.1,England
+16,Shakib Al Hasan,All-rounder,39.4,31.1,Bangladesh
+17,Imran Khan,All-rounder,37.7,22.8,Pakistan
+18,Kapil Dev,All-rounder,31.1,29.6,India
+19,Wasim Akram,Bowler,,23.6,Pakistan
+20,Glenn McGrath,Bowler,,21.6,Australia
+21,Shane Warne,Bowler,,25.4,Australia
+22,Muttiah Muralitharan,Bowler,,22.7,Sri Lanka
+23,Anil Kumble,Bowler,,29.7,India
+24,Curtly Ambrose,Bowler,,20.9,West Indies
+25,James Anderson,Bowler,,26.5,England
+26,Shaun Pollock,Bowler,,23.1,South Africa
+27,Brett Lee,Bowler,,26.6,Australia
+28,Lasith Malinga,Bowler,,28.9,Sri Lanka
+29,Shoaib Akhtar,Bowler,,25.7,Pakistan
+30,Mitchell Starc,Bowler,,27.6,Australia
+31,Sunil Gavaskar,Batsman,51.1,,India
+32,Matthew Hayden,Batsman,50.7,,Australia
+33,Inzamam-ul-Haq,Batsman,49.6,,Pakistan
+34,Mahela Jayawardene,Batsman,49.8,,Sri Lanka
+35,Kumar Sangakkara,Batsman,57.4,,Sri Lanka
+36,Adam Gilchrist,Wicketkeeper,47.6,,Australia
+37,MS Dhoni,Wicketkeeper,44.7,,India
+38,Brendon McCullum,Wicketkeeper,38.6,,New Zealand
+39,Mark Boucher,Wicketkeeper,30.0,,South Africa
+40,Quinton de Kock,Wicketkeeper,39.1,,South Africa
+41,Allan Border,Batsman,50.6,,Australia
+42,Graeme Smith,Batsman,48.3,,South Africa
+43,Alastair Cook,Batsman,45.4,,England
+44,Michael Clarke,Batsman,49.1,,Australia
+45,Kevin Pietersen,Batsman,47.3,,England
+46,Saqlain Mushtaq,Bowler,,29.8,Pakistan
+47,Harbhajan Singh,Bowler,,32.5,India
+48,Zaheer Khan,Bowler,,32.9,India
+49,Stuart Broad,Bowler,,27.8,England
+50,Trent Boult,Bowler,,27.6,New Zealand
