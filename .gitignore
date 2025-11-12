@@ -21,3 +21,6 @@ __pycache__/
 
 # Ignore VSCode settings (optional)
 .vscode/
+
+# Ignore Hobby folder
+Usecases/Hobby/
