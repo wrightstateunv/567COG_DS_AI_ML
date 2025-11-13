@@ -1,3 +1,5 @@
+# Ignore embedding and chunk stores
+LLM_Engines/ollama/store/
 # Ignore Python virtual environments
 .venv/
 venv/
