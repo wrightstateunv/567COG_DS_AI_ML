@@ -1,0 +1,11 @@
+Mission_Title,Country,State,City,Base,Tasked_System,Network_Map,Tasked_Sub_System,Misc_System_Info_Equipment,CPT_Equipment,Tools,Terrain_Category,Terrain_Network_Type,Terrain_Operating_System,Terrain_Enclave,text_chunk,source_file,source_column,chunk_index,column_chunked,chunk_id,original_row_id
+Mission_1,Germany,Texas,Munich,WPAFB,System Z,Map1,SubB,InfoB,EquipC,ToolC,CatA,TypeA,Linux,EnclaveC,,Missions_by_Location_and_Tasked_System.csv,,1,,5e9a2205-c71c-402a-bd4a-a16b29d63b18,0
+Mission_2,Germany,Tokyo,Dayton,Randolph,System Y,Map1,SubA,InfoA,EquipB,ToolB,CatA,TypeB,Unix,EnclaveC,,Missions_by_Location_and_Tasked_System.csv,,1,,34c69f44-6140-44ee-ad02-84f1d88ff356,1
+Mission_3,Germany,Bavaria,San Antonio,Randolph,System Z,Map2,SubB,InfoA,EquipA,ToolC,CatB,TypeB,Windows,EnclaveA,,Missions_by_Location_and_Tasked_System.csv,,1,,6a7a0d0e-0257-4132-8b61-d879968f2453,2
+Mission_4,UK,Bavaria,San Antonio,Yokota,System Y,Map3,SubC,InfoC,EquipC,ToolC,CatC,TypeB,Unix,EnclaveC,,Missions_by_Location_and_Tasked_System.csv,,1,,9830067a-7b30-4da2-88fe-b75e979f645f,3
+Mission_5,USA,Tokyo,Shinjuku,Ramstein,System Y,Map2,SubC,InfoC,EquipC,ToolB,CatA,TypeC,Linux,EnclaveA,,Missions_by_Location_and_Tasked_System.csv,,1,,cbb37fcf-22ca-49cf-8278-fbe19e1cc288,4
+Mission_6,Japan,Tokyo,Shinjuku,Ramstein,System X,Map2,SubB,InfoC,EquipC,ToolB,CatA,TypeA,Unix,EnclaveB,,Missions_by_Location_and_Tasked_System.csv,,1,,0ee9cd24-149b-4267-a663-f1161cf32ed4,5
+Mission_7,UK,Bavaria,Shinjuku,Randolph,System X,Map1,SubB,InfoB,EquipB,ToolB,CatB,TypeB,Windows,EnclaveC,,Missions_by_Location_and_Tasked_System.csv,,1,,6c8cf4b6-1776-4145-8452-a38b0d9234b8,6
+Mission_8,USA,Bavaria,Shinjuku,Yokota,System Y,Map1,SubC,InfoB,EquipA,ToolA,CatB,TypeA,Unix,EnclaveA,,Missions_by_Location_and_Tasked_System.csv,,1,,aef1d695-7652-4de7-b545-940222b808fc,7
+Mission_9,Germany,Texas,San Antonio,Randolph,System X,Map2,SubB,InfoC,EquipC,ToolC,CatA,TypeA,Linux,EnclaveA,,Missions_by_Location_and_Tasked_System.csv,,1,,8ea7c4c7-f8ba-4ac9-ae03-6691e5daeeec,8
+Mission_10,Germany,Bavaria,Munich,WPAFB,System Y,Map1,SubA,InfoA,EquipC,ToolA,CatC,TypeA,Windows,EnclaveB,,Missions_by_Location_and_Tasked_System.csv,,1,,0a9d0adb-b832-44be-ac8f-db8c7d91db4c,9

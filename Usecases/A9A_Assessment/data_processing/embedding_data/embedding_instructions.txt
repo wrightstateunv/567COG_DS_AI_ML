@@ -1,0 +1,6 @@
+Create a notebook here  /Users/mathewthomas/Documents/hobby_projects/AI_ML_Work/567COG_DS_AI_ML/Usecases/A9A_Assessment/code/data_embedding_pipeline.ipynb to do this task:
+Use the combined chunked dataset here: '/Users/mathewthomas/Documents/hobby_projects/AI_ML_Work/567COG_DS_AI_ML/Usecases/A9A_Assessment/data_processing/chunked_data/a9a_assessment_single_chunked_document.csv'
+to create an embedding_vector I can use for Foundry LLM or any LLM and save as 
+'/Users/mathewthomas/Documents/hobby_projects/AI_ML_Work/567COG_DS_AI_ML/Usecases/A9A_Assessment/data_processing/chunked_data/a9a_assessment_single_embedded_document.csv'
+If possible use a python embedding_vector module
+The embedding vector should be a list

@@ -1,0 +1,174 @@
+Title: data_chunking_pipeline.ipynb
+Location: ../../code
+
+Please generate a Jupyter notebook named data_chunking_pipeline.ipynb inside the ../../code folder.
+
+🎯 Purpose
+
+I want to preprocess multiple CSV files so I can pass the data to an LLM inside Palantir Foundry Envision without hitting token limits.
+
+Raw tables contain multiple long-text fields, so they must be chunked.
+
+I will use:
+
+Foundry Ontology Objects for structured navigation
+
+Chunked text + Embeddings for semantic retrieval
+
+The output must be formatted to work with Envision Pipelines, Ontology Manager, and LLM Agents.
+
+Requirements (Best Practice for Multiple Tables)
+
+1. Load & Process All CSV Files Together
+
+Load all CSVs from:
+
+/Users/mathewthomas/Documents/hobby_projects/AI_ML_Work/567COG_DS_AI_ML/Usecases/A9A_Assessment/data
+
+2. Identify and Chunk ALL Long-Text Columns
+
+For each CSV:
+
+-Detect columns containing more than 25 words
+
+-These columns must be chunked independently
+
+-But output must maintain one combined row per chunk, containing:
+
+The chunk text
+
+All other non-text columns (ID, names, mission fields, etc.)
+
+Metadata tags:
+
+source_filename
+
+column_chunked
+
+chunk_index
+
+-Chunking rules:
+
+Split text into chunks of max 25 words
+
+Ensure 2-word overlap between chunks
+
+Preserve full word boundaries
+
+If multiple text columns need chunking:
+→ Generate a row for each chunk of each column, duplicating non-chunked metadata fields
+
+This mirrors Foundry’s recommended ML/RAG chunking pattern.
+
+3. Save Outputs According to Chunking Behavior
+
+For each source file:
+
+If chunking WAS required:
+
+Save to:
+
+/Users/.../data_processing/chunked_data/<original_name>_was_chunked.csv
+
+
+-Output schema must include:
+
+column
+chunk_id (UUID)
+source_file
+original_row_id
+column_chunked
+chunk_index
+text_chunk
+all other metadata columns
+
+This format is directly usable by Pipeline Builder → Use LLM (Embedding)
+and Ontology Manager → Map Dataset to Object.
+
+If NO chunking was needed:
+
+Save to:
+
+/Users/.../data_processing/chunked_data/<original_name>_not_chunked.csv
+
+
+Schema:
+
+identical to input (so Ontology can ingest)
+
+4. Ontology-Compatible Output
+
+Ensure each chunked dataset preserves:
+
+stable identifiers (original_row_id)
+
+context metadata (ID fields, mission names, etc.)
+
+source_file
+
+column_chunked
+
+These are required when mapping:
+
+Mission → Mission Details
+
+Mission Timeline → Mission
+
+etc.
+
+into Ontology Object Types.
+
+The ipynb Notebook Structure should be:
+
+Please generate a notebook with the following sections:
+
+Section 1 — Imports & Configuration
+
+pathlib, pandas, uuid
+
+utility function to detect long-text columns
+
+Section 2 — Chunking Utility
+
+Reusable functions:
+
+split_into_chunks(text, chunk_size=25, overlap=2)
+
+process_file(file_path)
+
+chunk_text_columns(df)
+
+save_output(df, was_chunked, filename)
+
+These should follow best practices for Envision compatibility.
+
+Section 3 — Iterate Over All CSVs
+
+Iterate through the folder, process each CSV, and save chunked / non-chunked outputs accordingly.
+
+Section 4 — Log Summary
+
+Write a summary showing:
+
+number of files processed
+
+how many columns chunked
+
+how many chunks created
+
+save the log file to /Users/.../data_processing/chunked_data/
+✨ Foundry-Ready Output
+
+The notebook must generate files that are:
+
+ready for Pipeline Builder ingestion
+
+compatible with "Use LLM (Embedding)" node
+
+suitable for Ontology mapping (no nested lists, no exotic data types, flat columns only)
+
+✔️ Please generate the entire notebook following these instructions.
+
+Can you also add code to the notebook create a single chunked_document named a9a_assessment_single_chunked_document.csv looping through all of the _was_chunked csvs that I can get into Foundr, need at least the following columns:
+Keep the boolean and short string columns with the chunks as metadata columns in the unified chunk table.
+Should also contain source_file                      | source_column             | chunk_index | text_chunk

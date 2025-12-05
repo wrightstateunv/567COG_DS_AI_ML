@@ -1,40 +1,3 @@
-# --- Direct Q&A for Tennis (single question, single answer, for UI/CLI) ---
-def tennis_qa(question, persist_path=None, show_tokens=False):
-    """
-    Answer a single tennis question using the chunked tennis document store.
-    Args:
-        question (str): The question to ask.
-        persist_path (str): Path to the tennis document store (defaults to standard location).
-        show_tokens (bool): Whether to display token usage info.
-    Returns:
-        str: The answer from the LLM.
-    """
-    if persist_path is None:
-        persist_path = "/Users/mathewthomas/Documents/hobby_projects/AI_ML_Work/567COG_DS_AI_ML/LLM_Engines/ollama/store/embedding/tennis_store.json"
-    if not os.path.exists(persist_path):
-        print(f"Error: Tennis document store not found at {persist_path}")
-        return None
-    loaded_store = InMemoryDocumentStore.load_from_disk(persist_path)
-    embedding_model = "nomic-embed-text"
-    llm_model = "llama2"
-    retriever = InMemoryEmbeddingRetriever(document_store=loaded_store)
-    prompt_builder = PromptBuilder(
-        template="You are a tennis data analyst. Answer the user's question using the provided context from tennis data. "
-                "Provide detailed, accurate information based on the context. If the context doesn't contain relevant information, "
-                "state that clearly.\n\nContext: {{context}}\n\nQuestion: {{query}}\n\nAnswer:",
-        required_variables=["context", "query"]
-    )
-    query_emb = get_ollama_embedding(question, model=embedding_model, show_tokens=show_tokens)
-    retrieved = retriever.run(query_embedding=query_emb, top_k=5)
-    context = " ".join([doc.content for doc in retrieved["documents"]])
-    if show_tokens:
-        context_tokens = estimate_tokens(context)
-        print(f"Retrieved context tokens: {context_tokens}")
-    prompt = prompt_builder.run(template_variables={"context": context, "query": question})["prompt"]
-    answer = call_ollama_llm(prompt, model=llm_model, show_tokens=show_tokens)
-    print(answer)
-    return answer
-
 # -----------------------------------------------------------------------------
 # haystack_ollama_local_pipeline_example.py
 #
@@ -735,113 +698,108 @@ def tennis_interactive_session(data_dir=None, persist_path=None, show_tokens=Tru
     Chunks long text columns (>100 chars) for embedding and retrieval.
     """
     import glob
-
-    # If the persisted store exists, skip chunking/embedding and just load it
+    docs = []
+    chunk_dir = "/Users/mathewthomas/Documents/hobby_projects/AI_ML_Work/567COG_DS_AI_ML/LLM_Engines/ollama/store/chunks/tennis"
+    os.makedirs(chunk_dir, exist_ok=True)
+    chunk_count = 0
+    # Set default persist_path if not provided
     if persist_path is None:
         persist_path = "/Users/mathewthomas/Documents/hobby_projects/AI_ML_Work/567COG_DS_AI_ML/LLM_Engines/ollama/store/embedding/tennis_store.json"
-    if os.path.exists(persist_path):
-        print(f"Found existing tennis document store at {persist_path}. Skipping chunking and embedding.")
-        loaded_store = InMemoryDocumentStore.load_from_disk(persist_path)
-    else:
-        docs = []
-        chunk_dir = "/Users/mathewthomas/Documents/hobby_projects/AI_ML_Work/567COG_DS_AI_ML/LLM_Engines/ollama/store/chunks/tennis"
-        os.makedirs(chunk_dir, exist_ok=True)
-        chunk_count = 0
-        # Define columns to chunk for each file
-        chunk_columns_map = {
-            "match_reports.xlsx": ["match_summary", "tactical_notes"],
-            "scouting_dossiers.xlsx": ["strengths", "weaknesses", "recommended_strategy"],
-            "training_sessions.xlsx": ["drill_plan", "coach_comments"]
-        }
-        import itertools
-        # Define xlsx_paths from tennis data directory
-        tennis_data_dir = "/Users/mathewthomas/Documents/hobby_projects/AI_ML_Work/567COG_DS_AI_ML/LLM_Engines/ollama/data/tennis"
-        xlsx_paths = glob.glob(os.path.join(tennis_data_dir, "*.xlsx"))
-        # Process XLSX files
-        for xlsx_path in xlsx_paths:
-            try:
-                df = pd.read_excel(xlsx_path)
-            except Exception as e:
-                print(f"Error reading {xlsx_path}: {e}")
-                continue
+    # Define columns to chunk for each file
+    chunk_columns_map = {
+        "match_reports.xlsx": ["match_summary", "tactical_notes"],
+        "scouting_dossiers.xlsx": ["strengths", "weaknesses", "recommended_strategy"],
+        "training_sessions.xlsx": ["drill_plan", "coach_comments"]
+    }
+    import itertools
+    # Define xlsx_paths from tennis data directory
+    tennis_data_dir = "/Users/mathewthomas/Documents/hobby_projects/AI_ML_Work/567COG_DS_AI_ML/LLM_Engines/ollama/data/tennis"
+    xlsx_paths = glob.glob(os.path.join(tennis_data_dir, "*.xlsx"))
+    # Process XLSX files
+    for xlsx_path in xlsx_paths:
+        try:
+            df = pd.read_excel(xlsx_path)
+        except Exception as e:
+            print(f"Error reading {xlsx_path}: {e}")
+            continue
 
-            filename = os.path.basename(xlsx_path)
-            chunk_columns = chunk_columns_map.get(filename, [])
-            chunked_rows = []
-            for idx, row in df.iterrows():
-                non_target_cols = {col: row[col] for col in df.columns if col not in chunk_columns}
-                # Chunk each target column independently
-                for col in chunk_columns:
-                    val = str(row[col])
-                    # Word-based chunking with overlap, preserving whole words
-                    words = val.split()
-                    if len(words) == 0:
-                        chunks = ['']
-                    elif len(val) > 100:
-                        chunk_words = []
-                        start = 0
-                        while start < len(words):
-                            end = start
-                            char_count = 0
-                            # Add words until chunk_size or end of list
-                            while end < len(words) and char_count + len(words[end]) + (1 if char_count > 0 else 0) <= chunk_size:
-                                char_count += len(words[end]) + (1 if char_count > 0 else 0)
-                                end += 1
-                            chunk = ' '.join(words[start:end])
-                            chunk_words.append(chunk)
-                            if end == len(words):
-                                break
-                            # Overlap: move start forward by (end - chunk_overlap, start + 1)
-                            start = max(end - chunk_overlap, start + 1)
-                        chunks = chunk_words
-                    else:
-                        chunks = [val]
-                    for chunk_id, chunk_text in enumerate(chunks):
-                        chunk_row = {
-                            "file_id": filename,
-                            "row_id": idx,
-                            "column_name": col,
-                            "chunk_id": chunk_id,
-                            "chunk_text": chunk_text
-                        }
-                        # Add non-target columns as metadata
-                        chunk_row.update(non_target_cols)
-                        chunked_rows.append(chunk_row)
-                        # Save chunk file
-                        chunk_count += 1
-                        chunk_filename = f"tennis_chunk_{chunk_count}_row{idx}_col{col}_chunk{chunk_id}.txt"
-                        chunk_path = os.path.join(chunk_dir, chunk_filename)
-                        labeled_text = "\n".join([f"{k}: {v}" for k, v in chunk_row.items()])
-                        with open(chunk_path, "w", encoding="utf-8") as f:
-                            f.write(labeled_text)
-                        docs.append(Document(content=labeled_text, meta={"source": xlsx_path, "row": idx, "column": col, "chunk_id": chunk_id}))
-            # Save chunked DataFrame to new XLSX file (long format)
-            chunked_df = pd.DataFrame(chunked_rows)
-            chunked_filename = os.path.splitext(xlsx_path)[0] + "_chunked.xlsx"
-            chunked_df.to_excel(chunked_filename, index=False)
+        filename = os.path.basename(xlsx_path)
+        chunk_columns = chunk_columns_map.get(filename, [])
+        chunked_rows = []
+        for idx, row in df.iterrows():
+            non_target_cols = {col: row[col] for col in df.columns if col not in chunk_columns}
+            # Chunk each target column independently
+            for col in chunk_columns:
+                val = str(row[col])
+                # Word-based chunking with overlap, preserving whole words
+                words = val.split()
+                if len(words) == 0:
+                    chunks = ['']
+                elif len(val) > 100:
+                    chunk_words = []
+                    start = 0
+                    while start < len(words):
+                        end = start
+                        char_count = 0
+                        # Add words until chunk_size or end of list
+                        while end < len(words) and char_count + len(words[end]) + (1 if char_count > 0 else 0) <= chunk_size:
+                            char_count += len(words[end]) + (1 if char_count > 0 else 0)
+                            end += 1
+                        chunk = ' '.join(words[start:end])
+                        chunk_words.append(chunk)
+                        if end == len(words):
+                            break
+                        # Overlap: move start forward by (end - chunk_overlap, start + 1)
+                        start = max(end - chunk_overlap, start + 1)
+                    chunks = chunk_words
+                else:
+                    chunks = [val]
+                for chunk_id, chunk_text in enumerate(chunks):
+                    chunk_row = {
+                        "file_id": filename,
+                        "row_id": idx,
+                        "column_name": col,
+                        "chunk_id": chunk_id,
+                        "chunk_text": chunk_text
+                    }
+                    # Add non-target columns as metadata
+                    chunk_row.update(non_target_cols)
+                    chunked_rows.append(chunk_row)
+                    # Save chunk file
+                    chunk_count += 1
+                    chunk_filename = f"tennis_chunk_{chunk_count}_row{idx}_col{col}_chunk{chunk_id}.txt"
+                    chunk_path = os.path.join(chunk_dir, chunk_filename)
+                    labeled_text = "\n".join([f"{k}: {v}" for k, v in chunk_row.items()])
+                    with open(chunk_path, "w", encoding="utf-8") as f:
+                        f.write(labeled_text)
+                    docs.append(Document(content=labeled_text, meta={"source": xlsx_path, "row": idx, "column": col, "chunk_id": chunk_id}))
+        # Save chunked DataFrame to new XLSX file (long format)
+        chunked_df = pd.DataFrame(chunked_rows)
+        chunked_filename = os.path.splitext(xlsx_path)[0] + "_chunked.xlsx"
+        chunked_df.to_excel(chunked_filename, index=False)
 
-        # Generate embeddings for chunks
-        embedding_model = "nomic-embed-text"
-        print("Generating embeddings for tennis chunks...")
-        for idx, doc in enumerate(docs, 1):
-            if show_tokens:
-                print(f"Processing chunk {idx}/{len(docs)}")
-            try:
-                doc.embedding = get_ollama_embedding(doc.content, model=embedding_model, show_tokens=show_tokens)
-            except Exception as e:
-                print(f"Failed to generate embedding for chunk {idx}: {e}")
-                print(f"Chunk content preview: {doc.content[:200]}...")
-                raise
+    # Generate embeddings for chunks
+    embedding_model = "nomic-embed-text"
+    print("Generating embeddings for tennis chunks...")
+    for idx, doc in enumerate(docs, 1):
+        if show_tokens:
+            print(f"Processing chunk {idx}/{len(docs)}")
+        try:
+            doc.embedding = get_ollama_embedding(doc.content, model=embedding_model, show_tokens=show_tokens)
+        except Exception as e:
+            print(f"Failed to generate embedding for chunk {idx}: {e}")
+            print(f"Chunk content preview: {doc.content[:200]}...")
+            raise
 
-        # Store and persist
-        store = InMemoryDocumentStore()
-        store.write_documents(docs)
-        os.makedirs(os.path.dirname(persist_path), exist_ok=True)
-        store.save_to_disk(persist_path)
-        print(f"Tennis document store with embeddings saved to: {persist_path}")
+    # Store and persist
+    store = InMemoryDocumentStore()
+    store.write_documents(docs)
+    os.makedirs(os.path.dirname(persist_path), exist_ok=True)
+    store.save_to_disk(persist_path)
+    print(f"Tennis document store with embeddings saved to: {persist_path}")
 
-        # Reload for retrieval
-        loaded_store = InMemoryDocumentStore.load_from_disk(persist_path)
+    # Reload for retrieval
+    loaded_store = InMemoryDocumentStore.load_from_disk(persist_path)
 
     # Interactive Q&A loop
     session_start = time.time()
@@ -964,14 +922,10 @@ if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description="Run Haystack+Ollama local pipeline example.")
     parser.add_argument(
-        "--mode",
-        choices=[
-            "minimal", "pdf", "pdf_persist", "pdf_chunked_persist",
-            "intel_chunked_persist", "intel_qa", "intel_interactive",
-            "tennis_interactive", "tennis_qa"
-        ],
+    "--mode",
+    choices=["minimal", "pdf", "pdf_persist", "pdf_chunked_persist", "intel_chunked_persist", "intel_qa", "intel_interactive", "tennis_interactive"],
         default="tennis_interactive",
-        help="Which pipeline function to run: minimal (hardcoded docs), pdf (PDF input), pdf_persist (PDF input with persistent embedding store), pdf_chunked_persist (PDF input, chunked, with persistent embedding store), intel_chunked_persist (all files from intel_simulated_data folder, chunked, with persistent embedding store), intel_qa (ask a single question to intel data), intel_interactive (start interactive Q&A session with intel data), tennis_interactive (start interactive Q&A session with tennis data), or tennis_qa (ask a single question to tennis data)."
+    help="Which pipeline function to run: minimal (hardcoded docs), pdf (PDF input), pdf_persist (PDF input with persistent embedding store), pdf_chunked_persist (PDF input, chunked, with persistent embedding store), intel_chunked_persist (all files from intel_simulated_data folder, chunked, with persistent embedding store), intel_qa (ask a single question to intel data), intel_interactive (start interactive Q&A session with intel data), or tennis_interactive (start interactive Q&A session with tennis data)."
     )
     parser.add_argument(
         "--persist_path",
@@ -993,7 +947,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--question",
         type=str,
-        help="Question to ask the LLM (used with --mode intel_qa or tennis_qa)."
+        help="Question to ask the intel system (used with --mode intel_qa)."
     )
     args = parser.parse_args()
 
@@ -1020,13 +974,6 @@ if __name__ == "__main__":
             print('Example: python script.py --mode intel_qa --question "What are the main threat actors?"')
         else:
             ask_intel_question(args.question)
-    elif args.mode == "tennis_qa":
-        print("--- Tennis Q&A Mode ---")
-        if not args.question:
-            print("Error: --question argument is required for tennis_qa mode")
-            print('Example: python script.py --mode tennis_qa --question "Who won the last match?"')
-        else:
-            tennis_qa(args.question)
     elif args.mode == "intel_interactive":
         print("--- Starting Intel Interactive Q&A Session ---")
         intel_interactive_session()

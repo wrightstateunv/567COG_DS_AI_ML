@@ -1,0 +1,11 @@
+Mission_Title,Doc_ID,Doc_Type,Doc_Date,Classification,Author,Review_Status,text_chunk,source_file,source_column,chunk_index,column_chunked,chunk_id,original_row_id
+Mission_1,DOC001,Memo,2025-12-04,Top Secret,Analyst B,Reviewed,,Cyber_Document_Library.csv,,1,,67c1047c-eb75-4c62-9a57-dc72ce42c9a3,0
+Mission_2,DOC002,Memo,2025-12-05,Secret,Analyst A,Reviewed,,Cyber_Document_Library.csv,,1,,156d1f08-3f7c-4415-8a8f-e3edc8150915,1
+Mission_3,DOC003,Report,2025-12-06,Secret,Analyst B,Reviewed,,Cyber_Document_Library.csv,,1,,cf590eb5-1f17-43d1-abd4-6098b3aaf642,2
+Mission_4,DOC004,Briefing,2025-12-07,Secret,Analyst A,Pending,,Cyber_Document_Library.csv,,1,,e589dc78-2e90-4326-98c3-a772bacb5237,3
+Mission_5,DOC005,Memo,2025-12-08,Secret,Analyst B,Rejected,,Cyber_Document_Library.csv,,1,,5f401482-d7f8-47e2-9ca5-5e9e2d39e430,4
+Mission_6,DOC006,Briefing,2025-12-09,Secret,Analyst C,Reviewed,,Cyber_Document_Library.csv,,1,,8b09c81e-ec89-4ad9-b3c4-7336b88cbe4d,5
+Mission_7,DOC007,Briefing,2025-12-10,Unclassified,Analyst A,Reviewed,,Cyber_Document_Library.csv,,1,,0ce3368d-ed61-46c0-92ff-7b49962d5029,6
+Mission_8,DOC008,Report,2025-12-11,Unclassified,Analyst A,Rejected,,Cyber_Document_Library.csv,,1,,d0eca52c-dfdb-4814-b5cf-edbdc5467e16,7
+Mission_9,DOC009,Memo,2025-12-12,Unclassified,Analyst A,Reviewed,,Cyber_Document_Library.csv,,1,,9630ed92-78ea-458f-b2cb-12e125ecd54e,8
+Mission_10,DOC010,Briefing,2025-12-13,Unclassified,Analyst A,Reviewed,,Cyber_Document_Library.csv,,1,,bcc12f45-9b64-405f-88de-b0e897467f94,9

@@ -1,0 +1,11 @@
+Mission_Title,text_chunk,source_file,source_column,chunk_index,column_chunked,chunk_id,original_row_id
+Mission_1,,Mission_Metrics.csv,,1,,7a7acbd3-bafd-457b-9964-f1d807d0c097,0
+Mission_2,,Mission_Metrics.csv,,1,,b2037e49-65d6-4e33-9916-d407074d9ca8,1
+Mission_3,,Mission_Metrics.csv,,1,,169c2417-3020-461e-aefd-4c4e1f25a62e,2
+Mission_4,,Mission_Metrics.csv,,1,,24e56f61-3a94-4197-9b4a-2f1eda91f646,3
+Mission_5,,Mission_Metrics.csv,,1,,882f7b2e-896d-4f77-8e97-e3cb93391067,4
+Mission_6,,Mission_Metrics.csv,,1,,b1d251a8-4a70-41b3-a6a3-149de0030112,5
+Mission_7,,Mission_Metrics.csv,,1,,34e371d3-b20a-4cb7-b9a5-49629301e421,6
+Mission_8,,Mission_Metrics.csv,,1,,44231cd2-2547-481e-a0aa-c318ee166397,7
+Mission_9,,Mission_Metrics.csv,,1,,bf8e1ef0-3018-4c86-b2f3-0e0a61f7189e,8
+Mission_10,,Mission_Metrics.csv,,1,,ca833ac4-c55d-4d7a-8fdd-1af3803d3da9,9

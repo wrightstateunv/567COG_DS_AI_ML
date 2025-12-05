@@ -1,0 +1,9 @@
+file,rows,long_text_columns,chunks_generated
+Mission_Metrics.csv,10,,10
+Equipment_Issues.csv,50,Equipment Issues,50
+FFIRs_Friction_Points_Recommendations.csv,240,"FFIR,Friction_Point,Recommendation,Observation,Action_Item,Summary",240
+Tactical_Lessons_Learned.csv,280,"Debrief_Focus_Point_Problem_Statement,Contributing_Factors,Root_Cause,Instructional_Fix,LL_LP_LO,DOTMLPFP_PAIC2,Big_Rocks",280
+Missions_by_Location_and_Tasked_System.csv,10,,10
+Cyber_Document_Library.csv,10,,10
+Mission_Details.csv,10,,10
+Hardening_Recommendations.csv,60,Hardening Recommendation #231,60

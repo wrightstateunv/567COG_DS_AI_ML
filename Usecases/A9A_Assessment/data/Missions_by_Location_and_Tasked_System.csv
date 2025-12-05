@@ -1,0 +1,11 @@
+CY,Mission_Title,Country,State,City,Base,Tasked_System,Network_Map,Attachments,Tasked_Sub_System,Misc_System_Info_Equipment,CPT_Equipment,Tools,Terrain_Category,Terrain_Network_Type,Terrain_Operating_System,Terrain_Enclave
+2025,Mission_1,Germany,Texas,Munich,WPAFB,System Z,Map1,1,SubB,InfoB,EquipC,ToolC,CatA,TypeA,Linux,EnclaveC
+2024,Mission_2,Germany,Tokyo,Dayton,Randolph,System Y,Map1,4,SubA,InfoA,EquipB,ToolB,CatA,TypeB,Unix,EnclaveC
+2024,Mission_3,Germany,Bavaria,San Antonio,Randolph,System Z,Map2,4,SubB,InfoA,EquipA,ToolC,CatB,TypeB,Windows,EnclaveA
+2025,Mission_4,UK,Bavaria,San Antonio,Yokota,System Y,Map3,4,SubC,InfoC,EquipC,ToolC,CatC,TypeB,Unix,EnclaveC
+2024,Mission_5,USA,Tokyo,Shinjuku,Ramstein,System Y,Map2,1,SubC,InfoC,EquipC,ToolB,CatA,TypeC,Linux,EnclaveA
+2024,Mission_6,Japan,Tokyo,Shinjuku,Ramstein,System X,Map2,4,SubB,InfoC,EquipC,ToolB,CatA,TypeA,Unix,EnclaveB
+2024,Mission_7,UK,Bavaria,Shinjuku,Randolph,System X,Map1,2,SubB,InfoB,EquipB,ToolB,CatB,TypeB,Windows,EnclaveC
+2024,Mission_8,USA,Bavaria,Shinjuku,Yokota,System Y,Map1,0,SubC,InfoB,EquipA,ToolA,CatB,TypeA,Unix,EnclaveA
+2025,Mission_9,Germany,Texas,San Antonio,Randolph,System X,Map2,3,SubB,InfoC,EquipC,ToolC,CatA,TypeA,Linux,EnclaveA
+2024,Mission_10,Germany,Bavaria,Munich,WPAFB,System Y,Map1,2,SubA,InfoA,EquipC,ToolA,CatC,TypeA,Windows,EnclaveB

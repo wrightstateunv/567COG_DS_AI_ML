@@ -1,0 +1,74 @@
+#Instructions
+Can you create a python notebook. The task is to generate the CSV file list (#CSV File List) and save the files in the data folder. 
+For unknown columns, please add between 4-7 columns with some relevant names. 
+Mission_Title should be a column in each file. 
+The Mission_Title basically will link the different files together. 
+
+# CSV File List
+1) Cyber_Document_Library --> unknown columns, no large text fields
+2) Equipment_Issues --> unknown columns plus one long text column "Equipment Issues"
+3) FFIRs, Friction Points, Recommendations --> 6 long text unknown columns plus Mission Title
+4) Hardening Recommendations --> unknown columns plus long text column named "Hardening Recommendation % 231"
+5) Mission Details --> the following columns, no long text fields
+        -CY (string)
+        -Mission_Title (string)
+        -Terrain_System_Past_End_of_Life (boolean)
+        -Terrain_Air_Gapped (boolean)
+        -Intel_Driven_Hunt (boolean)
+        -TMP_Signing_Delay (boolean)
+        -ATC_Signing_Delay (boolean)
+        -ROC_Drill_Completed (boolean)
+        -ROC_Drill_Date (date)
+        -OIV_Conducted (boolean)
+        -OIV_Date (date)
+        -CTE_Utilized (boolean)
+        -CTE_Date (date)
+        -Range_Utilized (boolean)
+        -Equipment_Issues (boolean)
+        -Equipment_Shipping (string)
+        -CED_Orders_Issues (boolean)
+        -CED_Orders_Issues_Details (string)
+        -Badge_Building_Issues (string)
+        -Account_Issues (boolean)
+        -Account_Issue_Details (string)
+        -Equipment_Issues_Details (string)
+6) Mission_Metrics --> the following columns, no long text fields
+        -CY (string)
+        -Mission_Title (string)
+        -Number_of_JCO_Reports (integer)
+        -Number_of_Tactical_Objectives (integer)
+        -Number_of_Tactical_Tasks (integer)
+        -Number_of_Investigations (integer)
+        -Number_of_Capability_Gaps (integer)
+        -Number_of_Vulnerabilities (integer)
+        -Number_of_Hardening_Recommendations (integer)
+        -Number_of_Terrain_TTPs (integer)
+        -Number_of_ECOA_TTPs (integer)
+7) Missions by Location & Tasked System --> the following columns, no long text fields
+        - CY (string)
+        -Mission_Title (string)
+        -Country (string)
+        -State (string)
+        -City (string)
+        -Base (string)
+        -Tasked_System (string)
+        -Network_Map (string)
+        -Attachments (integer)
+        -Tasked_Sub_System (string)
+        -Misc_System_Info_Equipment (string)
+        -CPT_Equipment (string)
+        -Tools (string)
+        -Terrain_Category (string)
+        -Terrain_Network_Type (string)
+        -Terrain_Operating_System (string)
+        -Terrain_Enclave (string)
+8) Tactical_Lessons_Learned --> the following columns, all fields but Mission_Title is long text fields
+        - Mission Title (string)
+        - Debrief_Focus_Point(DFP)/Problem Statement (string)
+        - Contributing Factor(s) (string)
+        - Root Cause (string)
+        - Instructional Fix (string)
+        - LL, LP, LO (string)
+        - DOTMLPFP-PAIC2 (string)
+        - Big Rocks (string)
+
