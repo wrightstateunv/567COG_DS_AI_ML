@@ -2,6 +2,7 @@
 LLM_Engines/ollama/store/
 # Ignore Python virtual environments
 .venv/
+.venv310
 venv/
 ENV/
 env/
@@ -26,3 +27,5 @@ __pycache__/
 
 # Ignore Hobby folder
 Usecases/Hobby/
+Usecases/elk-hunt-pipeline/outputs/
+Usecases/Red_vs_Blue_Exercise/code/preprocessing/detection_rules_main/
